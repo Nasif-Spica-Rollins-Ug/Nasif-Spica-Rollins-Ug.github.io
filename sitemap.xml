@@ -1,8 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://nasif-spica-rollins-ug.github.io/</loc></url>
-  <url><loc>https://nasif-spica-rollins-ug.github.io/about.html</loc></url>
-  <url><loc>https://nasif-spica-rollins-ug.github.io/projects.html</loc></url>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <url>
+    <loc>https://nasif-spica-rollins-ug.github.io/</loc>
+    <image:image><image:loc>https://nasif-spica-rollins-ug.github.io/file_000000003e688211a82ce0a5cd07a527.png</image:loc><image:caption>Portrait of Nasif Spica Rollins</image:caption><image:title>Nasif Spica Rollins</image:title></image:image>
+    <image:image><image:loc>https://nasif-spica-rollins-ug.github.io/file_00000000fc74821199c2513861a7f664.png</image:loc><image:caption>Spi_tech circular technology assistant logo</image:caption><image:title>Spi_tech logo</image:title></image:image>
+  </url>
+  <url>
+    <loc>https://nasif-spica-rollins-ug.github.io/about.html</loc>
+    <image:image><image:loc>https://nasif-spica-rollins-ug.github.io/file_00000000b33c82119e94a883d25b8a33.png</image:loc><image:caption>Nasif Spica Rollins</image:caption><image:title>About Nasif Spica Rollins</image:title></image:image>
+  </url>
+  <url>
+    <loc>https://nasif-spica-rollins-ug.github.io/projects.html</loc>
+    <image:image><image:loc>https://nasif-spica-rollins-ug.github.io/IMG_20261115_114522.jpg</image:loc><image:caption>Spi_tech project banner — Build, Innovate, Inspire</image:caption><image:title>Spi_tech project</image:title></image:image>
+    <image:image><image:loc>https://nasif-spica-rollins-ug.github.io/file_00000000fc74821199c2513861a7f664.png</image:loc><image:caption>Spi_tech WhatsApp assistant logo</image:caption><image:title>Spi_tech WhatsApp assistant</image:title></image:image>
+  </url>
   <url><loc>https://nasif-spica-rollins-ug.github.io/interests.html</loc></url>
   <url><loc>https://nasif-spica-rollins-ug.github.io/journey.html</loc></url>
   <url><loc>https://nasif-spica-rollins-ug.github.io/contact.html</loc></url>
