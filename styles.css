@@ -89,3 +89,54 @@ h2{font-size:clamp(36px,4.6vw,60px);line-height:1.08;letter-spacing:-2.7px}
  .about-photo{max-width:340px;margin-bottom:8px}.footer{padding:25px 23px;gap:14px;flex-wrap:wrap}.footer>span{order:3;width:100%}
 }
 @media(max-width:390px){.brand-name{font-size:13px}.brand-mark{font-size:26px}.hero-portrait{height:350px}}
+
+
+/* ===== Reference-matched layout correction ===== */
+.site-header{height:86px;padding:0 clamp(22px,4.5vw,76px);display:flex;align-items:center;justify-content:space-between;gap:24px}
+.brand{display:inline-flex;align-items:center;gap:16px;min-width:0}
+.brand-logo{display:block;width:52px;height:52px;flex:0 0 52px;object-fit:cover;object-position:center;border-radius:50%;border:2px solid #12b9ff;box-shadow:0 0 16px rgba(0,145,255,.34);background:#020817}
+.brand-name{font:600 clamp(15px,1.7vw,22px)/1.1 "Space Grotesk",sans-serif;white-space:nowrap;letter-spacing:-.35px;color:#f7f9ff}
+.footer .brand-logo{width:42px;height:42px;flex-basis:42px}
+.home-hero{display:block;position:relative;isolation:isolate;min-height:calc(100vh - 86px);padding:76px clamp(24px,5vw,76px) 92px;max-width:none;overflow:hidden;background:#030b19}
+.home-hero:before{content:"";position:absolute;z-index:-2;inset:0;background:radial-gradient(ellipse at 76% 48%,rgba(0,116,255,.38),transparent 44%),linear-gradient(115deg,#030b19 0%,#04142d 56%,#061b3b 100%)}
+.home-hero:after{content:"";position:absolute;z-index:1;pointer-events:none;inset:0;background:linear-gradient(90deg,#030b19 0%,rgba(3,11,25,.98) 27%,rgba(3,11,25,.72) 48%,rgba(3,11,25,.08) 76%,rgba(3,11,25,.12) 100%),linear-gradient(0deg,#030b19 0%,transparent 23%,transparent 83%,rgba(3,11,25,.12) 100%)}
+.hero-copy{position:relative;z-index:3;width:min(58%,690px);padding-top:12px}
+.hero-copy .eyebrow{font-size:clamp(17px,2.8vw,28px);letter-spacing:0;text-transform:none;color:#dce8f7;font-style:italic}
+.hero-copy h1{font-size:clamp(60px,7.7vw,108px);line-height:.94;letter-spacing:-5px;margin:18px 0 26px}
+.hero-copy .hero-lead{max-width:600px;font-size:clamp(16px,1.6vw,21px);line-height:1.55;color:#e0e8f5}
+.hero-portrait{position:absolute;z-index:0;inset:0 0 0 30%;height:auto;min-height:0;margin:0;display:block;overflow:hidden;pointer-events:none}
+.hero-portrait:before{content:"";position:absolute;z-index:1;inset:0;background:linear-gradient(115deg,rgba(0,61,166,.02),rgba(0,110,255,.2) 65%,rgba(0,47,132,.18));clip-path:none}
+.hero-portrait:after{content:"";position:absolute;z-index:2;inset:0;background:linear-gradient(90deg,#030b19 0%,rgba(3,11,25,.9) 12%,rgba(3,11,25,.12) 48%,transparent 78%),linear-gradient(0deg,#030b19 0%,transparent 27%,transparent 100%);clip-path:none}
+.hero-portrait img{position:absolute;inset:0;width:100%;height:100%;max-width:none;object-fit:cover;object-position:center 25%;opacity:.94;filter:saturate(1.06) contrast(1.03);mix-blend-mode:normal;mask-image:linear-gradient(90deg,transparent 0%,rgba(0,0,0,.25) 17%,#000 42%);-webkit-mask-image:linear-gradient(90deg,transparent 0%,rgba(0,0,0,.25) 17%,#000 42%)}
+.portrait-glow{z-index:0;right:9%;top:12%;width:58%;height:78%;background:rgba(0,111,255,.25);filter:blur(90px)}
+.portrait-caption{display:none}
+.hero-actions{margin-top:34px;gap:25px}
+.hero-actions .button-primary{padding:17px 30px;border-radius:999px;font-size:17px;box-shadow:0 0 0 3px rgba(0,125,255,.22),0 10px 32px rgba(0,107,255,.25)}
+.hero-socials{display:flex;align-items:center;gap:18px;margin-top:36px;position:relative;z-index:4}
+.hero-socials a{width:48px;height:48px;border:2px solid rgba(238,247,255,.92);border-radius:50%;display:grid;place-items:center;color:#fff;font:700 13px "Space Grotesk";letter-spacing:-.5px;background:rgba(4,18,38,.42);transition:background .2s,border-color .2s,transform .2s}
+.hero-socials a:hover{background:#087cf5;border-color:#16c9ff;transform:translateY(-3px)}
+.hero-foot{position:absolute;z-index:3;left:clamp(24px,5vw,76px);right:clamp(24px,5vw,76px);bottom:28px;display:flex;gap:20px;align-items:center;color:#d8e6f7;font:600 11px "Space Grotesk";letter-spacing:3px}
+.hero-foot:before{content:"";width:70px;height:2px;background:#dcecff;display:block}
+.hero-foot:after{content:"";width:120px;height:2px;background:linear-gradient(90deg,#0aaeff,transparent);display:block}
+.hero-foot span:first-child{display:none}
+.home-intro{position:relative}
+@media(max-width:760px){
+ .site-header{height:74px;padding:0 18px;gap:12px}
+ .brand{gap:10px}.brand-logo{width:43px;height:43px;flex-basis:43px}.brand-name{font-size:14px}
+ .nav{top:73px}
+ .home-hero{min-height:calc(100svh - 74px);padding:58px 23px 94px;display:flex;flex-direction:column;justify-content:flex-start}
+ .home-hero:after{background:linear-gradient(90deg,rgba(3,11,25,.97),rgba(3,11,25,.7) 52%,rgba(3,11,25,.24)),linear-gradient(0deg,#030b19 0%,transparent 30%,rgba(3,11,25,.12) 100%)}
+ .hero-copy{width:min(100%,620px);padding-top:10px}
+ .hero-copy .eyebrow{font-size:21px}
+ .hero-copy h1{font-size:clamp(55px,12vw,78px);letter-spacing:-3.5px;max-width:570px}
+ .hero-copy .hero-lead{max-width:420px;font-size:16px}
+ .hero-portrait{inset:0 0 0 4%;height:auto;min-height:0}
+ .hero-portrait img{object-position:62% center;opacity:.66;mask-image:linear-gradient(90deg,transparent 0%,rgba(0,0,0,.35) 22%,#000 56%);-webkit-mask-image:linear-gradient(90deg,transparent 0%,rgba(0,0,0,.35) 22%,#000 56%)}
+ .hero-portrait:after{background:linear-gradient(90deg,#030b19 0%,rgba(3,11,25,.56) 30%,rgba(3,11,25,.08) 100%),linear-gradient(0deg,#030b19 0%,transparent 35%)}
+ .hero-actions{margin-top:28px;gap:18px}.hero-actions .button-primary{font-size:15px;padding:15px 22px}
+ .hero-socials{margin-top:28px;gap:13px}.hero-socials a{width:43px;height:43px}
+ .hero-foot{bottom:22px;left:23px;right:23px;font-size:9px;letter-spacing:2px;gap:10px}
+ .hero-foot:before{width:30px}.hero-foot:after{width:34px}
+ .footer .brand-logo{width:36px;height:36px;flex-basis:36px}
+}
+@media(max-width:390px){.brand-name{font-size:12px}.brand-logo{width:39px;height:39px;flex-basis:39px}.hero-copy h1{font-size:53px}}
