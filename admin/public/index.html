@@ -28,6 +28,22 @@
         </form>
         <div class="secure-note"><span class="dot"></span> Encrypted session · Two-step sign-in</div>
       </div>
+
+      <section class="authenticator-box" aria-label="Web authenticator setup">
+        <button id="authToggle" class="auth-toggle" type="button" aria-expanded="false">Use this phone as a web authenticator <span>＋</span></button>
+        <div id="authPanel" class="auth-panel hidden">
+          <p class="auth-warning"><strong>Same-phone security:</strong> this stores your authenticator secret in this browser. A separate authenticator device is safer. Anyone who can unlock this phone and access this browser may be able to see your codes.</p>
+          <p class="muted">Create a private six-digit code generator on this device. Your secret is generated here and is not sent to our server.</p>
+          <button id="authGenerate" class="secondary" type="button">Generate my authenticator secret</button>
+          <div id="authDetails" class="hidden">
+            <label for="authSecret">Your secret key — add this to Render as ADMIN_TOTP_SECRET</label>
+            <div class="secret-row"><input id="authSecret" type="text" readonly autocomplete="off"><button id="authCopy" class="secondary" type="button">Copy</button></div>
+            <div class="totp-display"><span>Current six-digit code</span><strong id="authCode">------</strong><small id="authCountdown">Refreshes every 30 seconds</small></div>
+            <p class="auth-warning">Save the secret in a password manager as a backup. Do not send it in chat or show it in screenshots. If you lose this browser's saved data, you will need the backup secret to generate codes again.</p>
+          </div>
+          <p id="authStatus" class="auth-status" role="status"></p>
+        </div>
+      </section>
       <p class="login-foot">NASIF SPICA ROLLINS <span>·</span> WEBSITE MANAGEMENT</p>
     </section>
 
