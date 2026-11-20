@@ -84,8 +84,9 @@ $("codeEditor").addEventListener("input", setDirty);
 $("saveBtn").addEventListener("click", async () => {
   if (!currentFile) return;
   const button = $("saveBtn");
+  if (!confirm("This will create a commit on main and publish the changes to your live website. Have you checked the preview?")) return;
   button.disabled = true;
-  button.textContent = "Saving…";
+  button.textContent = "Publishing…";
   try {
     const result = await api("/api/file", {
       method: "PUT",
