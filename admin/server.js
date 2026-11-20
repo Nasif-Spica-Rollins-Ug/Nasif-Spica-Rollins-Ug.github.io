@@ -20,10 +20,10 @@ const editableFiles = new Set([
   "sitemap.xml", "robots.txt", "favicon.svg", "README.md"
 ]);
 const knownImages = new Set([
-  "IMG_20261115_114522.jpg",
-  "file_000000003e688211a82ce0a5cd07a527.png",
-  "file_00000000b33c82119e94a883d25b8a33.png",
-  "file_00000000fc74821199c2513861a7f664.png"
+  "Project_background.jpg",
+  "Webpage_logo.png",
+  "main_webpage_background.png",
+  "spi_tech_logo.png"
 ]);
 const sessions = new Map();
 const loginAttempts = new Map();
