@@ -140,3 +140,12 @@ h2{font-size:clamp(36px,4.6vw,60px);line-height:1.08;letter-spacing:-2.7px}
  .footer .brand-logo{width:36px;height:36px;flex-basis:36px}
 }
 @media(max-width:390px){.brand-name{font-size:12px}.brand-logo{width:39px;height:39px;flex-basis:39px}.hero-copy h1{font-size:53px}}
+
+
+/* ===== Correct Spi_tech project image roles ===== */
+.spitech-showcase{position:relative;isolation:isolate;min-height:430px;width:100%;overflow:hidden;border:1px solid rgba(25,142,255,.38);border-radius:24px;background:radial-gradient(ellipse at 76% 50%,rgba(0,119,255,.28),transparent 48%),linear-gradient(125deg,#06152b,#09264a 68%,#031023);box-shadow:0 24px 65px rgba(0,0,0,.3)}
+.spitech-showcase-background{position:absolute;z-index:-2;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;opacity:.62;filter:saturate(1.08) contrast(1.04);mask-image:linear-gradient(90deg,rgba(0,0,0,.18),#000 34%,#000 76%,rgba(0,0,0,.28));-webkit-mask-image:linear-gradient(90deg,rgba(0,0,0,.18),#000 34%,#000 76%,rgba(0,0,0,.28))}
+.spitech-showcase-shade{position:absolute;z-index:-1;inset:0;background:linear-gradient(90deg,rgba(3,11,25,.78),rgba(3,11,25,.1) 65%,rgba(3,11,25,.42)),linear-gradient(0deg,rgba(3,11,25,.58),transparent 45%,rgba(3,11,25,.12))}
+.spitech-showcase-logo{position:absolute;right:clamp(28px,8%,76px);top:50%;transform:translateY(-50%);width:clamp(150px,56%,270px);aspect-ratio:1;object-fit:cover;object-position:center;border-radius:50%;border:3px solid rgba(20,190,255,.85);box-shadow:0 0 0 10px rgba(3,15,35,.3),0 0 65px rgba(0,143,255,.55)}
+.spitech-showcase-caption{position:absolute;left:26px;bottom:24px;color:#e6f5ff;font:700 10px "Space Grotesk",sans-serif;letter-spacing:2.4px;text-shadow:0 2px 12px #001}
+@media(max-width:760px){.spitech-showcase{min-height:320px}.spitech-showcase-background{object-position:58% center;opacity:.52}.spitech-showcase-logo{width:clamp(142px,48vw,205px);right:50%;transform:translate(50%,-50%)}.spitech-showcase-caption{left:17px;bottom:17px;font-size:9px;letter-spacing:1.5px}}
