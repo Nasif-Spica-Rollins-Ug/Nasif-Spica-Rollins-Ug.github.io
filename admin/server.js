@@ -21,7 +21,7 @@ const editableFiles = new Set([
 ]);
 const knownImages = new Set([
   "Project_background.jpg",
-  "Webpage_logo.png",
+  "webpagelogo.png",
   "main_webpage_background.png",
   "spi_tech_logo.png"
 ]);
