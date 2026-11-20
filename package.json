@@ -1,0 +1,12 @@
+{
+  "name": "nasif-website-admin",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Private owner control center for the Nasif Spica Rollins website",
+  "scripts": {
+    "start": "node admin/server.js"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
