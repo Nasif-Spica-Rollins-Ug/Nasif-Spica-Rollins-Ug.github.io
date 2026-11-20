@@ -203,7 +203,7 @@ function serveStatic(res, name) {
     "X-Content-Type-Options": "nosniff",
     "Referrer-Policy": "no-referrer",
     "X-Frame-Options": "DENY",
-    "Content-Security-Policy": "default-src 'self'; img-src 'self' data: https:; style-src 'self' 'unsafe-inline'; script-src 'self'; connect-src 'self'; frame-src 'self' https://nasif-spica-rollins-ug.github.io; base-uri 'self'; form-action 'self'; frame-ancestors 'none'"
+    "Content-Security-Policy": "default-src 'self'; img-src 'self' data: https:; style-src 'self' 'unsafe-inline'; script-src 'self'; connect-src 'self'; frame-src 'self' https://nasif-spica-rollins-ug.github.io; base-uri https:; form-action 'self'; frame-ancestors 'none'"
   });
   fs.createReadStream(file).pipe(res);
 }
@@ -302,7 +302,7 @@ const server = http.createServer(async (req, res) => {
 
     if (req.method === "POST" && pathname === "/api/upload") {
       try {
-        const input = JSON.parse(await readBody(req));
+        const input = JSON.parse(await readBody(req, 8 * 1024 * 1024));
         const file = String(input.path || "");
         const mime = String(input.mime || "");
         const allowedMime = { "image/png": ".png", "image/jpeg": ".jpg", "image/webp": ".webp" };
