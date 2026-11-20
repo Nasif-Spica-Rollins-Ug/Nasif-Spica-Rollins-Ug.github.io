@@ -28,13 +28,9 @@ Paste the token only into Render's `GITHUB_TOKEN` environment variable.
 
 ### Authenticator setup
 
-Generate a fresh 20-byte Base32 secret on a trusted device. If Python is installed, run:
+On the dashboard login page, expand **Use this phone as a web authenticator** and tap **Generate my authenticator secret**. The secret is created with your phone browser's cryptographic random generator and saved in that browser's local storage; it is not sent to the dashboard server. Copy it into Render as `ADMIN_TOTP_SECRET`, and save a backup in your password manager. The dashboard then displays the six-digit time-based code on that same phone.
 
-```bash
-python -c "import secrets,base64; print(base64.b32encode(secrets.token_bytes(20)).decode().rstrip('='))"
-```
-
-Copy the generated value directly into Render as `ADMIN_TOTP_SECRET`. In your authenticator app, add an account manually using that same secret, choose **Time-based (TOTP)**, and use a six-digit code. Keep the secret in your password manager as a recovery backup.
+**Security trade-off:** this is convenient but weaker than using a separate authenticator device, because the password and authenticator are on the same phone/browser. Protect your phone with a screen lock and do not share the browser profile. Clearing browser data removes the locally stored secret, so keep the backup.
 
 Create a different long random password for `ADMIN_PASSWORD`; do not reuse your GitHub password.
 
