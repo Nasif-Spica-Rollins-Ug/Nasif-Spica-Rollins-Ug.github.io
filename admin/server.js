@@ -37,7 +37,7 @@ function send(res, status, data, headers = {}) {
     "Referrer-Policy": "no-referrer",
     "X-Frame-Options": "DENY",
     "Permissions-Policy": "camera=(), microphone=(), geolocation=()",
-    "Content-Security-Policy": "default-src 'self'; img-src 'self' data: https:; style-src 'self' 'unsafe-inline'; script-src 'self'; connect-src 'self'; frame-src 'self' https://nasif-spica-rollins-ug.github.io; base-uri 'self'; form-action 'self'; frame-ancestors 'none'",
+    "Content-Security-Policy": "default-src 'self'; img-src 'self' data: https:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; script-src 'self'; connect-src 'self'; frame-src 'self' https://nasif-spica-rollins-ug.github.io; base-uri 'self'; form-action 'self'; frame-ancestors 'none'",
     ...headers
   });
   res.end(body);
@@ -217,7 +217,7 @@ const server = http.createServer(async (req, res) => {
   }
   if (req.method === "GET" && pathname === "/health") return send(res, 200, { ok: true });
   if (req.method === "GET" && (pathname === "/" || pathname === "/admin" || pathname === "/admin/")) return serveStatic(res, "index.html");
-  if (req.method === "GET" && pathname.startsWith("/assets/")) return serveStatic(res, pathname.slice(1));
+  if (req.method === "GET" && pathname.startsWith("/assets/")) return serveStatic(res, pathname.slice("/assets/".length));
 
   if (req.method === "POST" && pathname === "/api/login") {
     const ip = req.headers["x-forwarded-for"]?.split(",")[0]?.trim() || req.socket.remoteAddress || "unknown";
