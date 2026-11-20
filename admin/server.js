@@ -37,7 +37,7 @@ function send(res, status, data, headers = {}) {
     "Referrer-Policy": "no-referrer",
     "X-Frame-Options": "DENY",
     "Permissions-Policy": "camera=(), microphone=(), geolocation=()",
-    "Content-Security-Policy": "default-src 'self'; img-src 'self' data: https:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; script-src 'self'; connect-src 'self'; frame-src 'self' https://nasif-spica-rollins-ug.github.io; base-uri 'self'; form-action 'self'; frame-ancestors 'none'",
+    "Content-Security-Policy": "default-src 'self'; img-src 'self' data: https:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; script-src 'self'; connect-src 'self'; frame-src 'self' https://nasif-spica-rollins-ug.github.io; base-uri https:; form-action 'self'; frame-ancestors 'none'",
     ...headers
   });
   res.end(body);
@@ -225,9 +225,10 @@ const server = http.createServer(async (req, res) => {
     if (attempt.until > Date.now()) return send(res, 429, { error: "Too many attempts. Wait 15 minutes and try again." });
     try {
       const input = JSON.parse(await readBody(req, 4096));
-      const configured = process.env.ADMIN_PASSWORD && process.env.ADMIN_TOTP_SECRET;
+      const configured = process.env.ADMIN_PASSWORD && process.env.ADMIN_PASSWORD.length >= 20 && process.env.ADMIN_TOTP_SECRET && process.env.GITHUB_TOKEN;
       const passOk = configured && safeEqual(input.password, process.env.ADMIN_PASSWORD);
       const otpOk = configured && verifyTotp(process.env.ADMIN_TOTP_SECRET, input.code);
+      if (!configured) return send(res, 503, { error: "Setup is incomplete. Add the three required private environment variables in Render, then retry." });
       if (!passOk || !otpOk) {
         attempt.count += 1;
         if (attempt.count >= 6) { attempt.until = Date.now() + 15 * 60 * 1000; attempt.count = 0; }
