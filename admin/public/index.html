@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="theme-color" content="#07111f">
+  <title>Website Control Center · NSR</title>
+  <link rel="stylesheet" href="/assets/admin.css">
+</head>
+<body>
+  <div class="ambient ambient-one"></div><div class="ambient ambient-two"></div>
+  <main class="shell">
+    <section id="loginView" class="login-wrap">
+      <div class="login-brand"><span class="brand-mark">NSR</span><span>PRIVATE WEBSITE ACCESS</span></div>
+      <div class="login-card">
+        <div class="lock-icon">⌑</div>
+        <p class="eyebrow">OWNER CONTROL CENTER</p>
+        <h1>Welcome back.</h1>
+        <p class="muted">Sign in to manage your website. This area is private and changes are published to your GitHub Pages site.</p>
+        <form id="loginForm">
+          <label for="password">Owner password</label>
+          <input id="password" name="password" type="password" autocomplete="current-password" required>
+          <label for="code">Authenticator code</label>
+          <input id="code" name="code" inputmode="numeric" pattern="[0-9]{6}" maxlength="6" autocomplete="one-time-code" placeholder="6-digit code" required>
+          <button class="primary full" type="submit">Unlock control center <span>→</span></button>
+          <p id="loginError" class="error" role="alert"></p>
+        </form>
+        <div class="secure-note"><span class="dot"></span> Encrypted session · Two-step sign-in</div>
+      </div>
+      <p class="login-foot">NASIF SPICA ROLLINS <span>·</span> WEBSITE MANAGEMENT</p>
+    </section>
+
+    <section id="appView" class="app-view hidden">
+      <header class="topbar">
+        <a class="brand" href="#" aria-label="NSR control center"><span class="brand-mark">NSR</span><span><b>Control Center</b><small>PERSONAL WEBSITE</small></span></a>
+        <div class="top-actions"><span class="online"><i></i> PRIVATE SESSION</span><button id="logoutBtn" class="quiet">Sign out ↗</button></div>
+      </header>
+      <section class="welcome">
+        <div><p class="eyebrow">YOUR WEBSITE · YOUR CONTROL</p><h1>Make it yours.</h1><p class="muted">Edit the source, manage your images, and publish only when you're happy with the changes.</p></div>
+        <a class="site-link" href="https://nasif-spica-rollins-ug.github.io/" target="_blank" rel="noopener">View live website ↗</a>
+      </section>
+      <div class="stats">
+        <div class="stat"><span>WEBSITE PAGES</span><b>06</b><small>All six pages available</small></div>
+        <div class="stat"><span>EDITABLE FILES</span><b>12</b><small>HTML, CSS, JS and metadata</small></div>
+        <div class="stat"><span>PUBLISH BRANCH</span><b>main</b><small>Changes create GitHub commits</small></div>
+      </div>
+      <div class="workspace">
+        <aside class="sidebar">
+          <div class="side-label">WORKSPACE</div>
+          <button class="side-tab active" data-panel="editor"><span>⌘</span> Code editor</button>
+          <button class="side-tab" data-panel="images"><span>▧</span> Image manager</button>
+          <button class="side-tab" data-panel="preview"><span>◫</span> Preview</button>
+          <div class="side-help"><b>Safe editing</b><p>Every save is a versioned GitHub commit. You can restore an earlier version from your repository's history.</p><a href="https://github.com/Nasif-Spica-Rollins-Ug/Nasif-Spica-Rollins-Ug.github.io/commits/main/" target="_blank" rel="noopener">View change history ↗</a></div>
+        </aside>
+        <section class="main-panel">
+          <div id="editorPanel" class="panel">
+            <div class="panel-heading"><div><p class="eyebrow">SOURCE FILES</p><h2>Code editor</h2><p class="muted">Edit the actual files that power your website.</p></div><span class="branch-pill">● main</span></div>
+            <div class="editor-layout">
+              <div class="file-list-wrap"><div class="file-list-title">WEBSITE FILES</div><div id="fileList" class="file-list"></div></div>
+              <div class="editor-area">
+                <div class="editor-toolbar"><div><b id="activeFile">Select a file</b><small id="fileStatus">Choose a file to begin</small></div><button id="saveBtn" class="primary" disabled>Save changes ↑</button></div>
+                <textarea id="codeEditor" spellcheck="false" aria-label="Website source code" placeholder="Select a file from the left to edit it." disabled></textarea>
+                <div class="editor-footer"><span id="dirtyState">No file selected</span><span>UTF-8 · Direct source editing</span></div>
+              </div>
+            </div>
+          </div>
+          <div id="imagesPanel" class="panel hidden">
+            <div class="panel-heading"><div><p class="eyebrow">VISUAL ASSETS</p><h2>Image manager</h2><p class="muted">Replace an existing image without changing its filename or role.</p></div></div>
+            <div class="image-manager">
+              <label for="imageTarget">Choose the image to replace</label>
+              <select id="imageTarget">
+                <option value="file_00000000fc74821199c2513861a7f664.png">Circular AI logo · site header and Spi_tech</option>
+                <option value="file_000000003e688211a82ce0a5cd07a527.png">Homepage background portrait</option>
+                <option value="file_00000000b33c82119e94a883d25b8a33.png">About page portrait</option>
+                <option value="IMG_20261115_114522.jpg">Spi_tech project banner</option>
+              </select>
+              <div class="upload-drop"><div class="upload-icon">＋</div><b>Choose a replacement image</b><p>PNG, JPG or WebP · Maximum 5 MB</p><input id="imageInput" type="file" accept="image/png,image/jpeg,image/webp"><button id="uploadBtn" class="primary" disabled>Replace selected image</button></div>
+              <p id="uploadStatus" class="muted"></p>
+              <div class="notice"><b>Keep image roles consistent.</b><p>The circular AI image is your website logo. Your homepage portrait, About portrait and Spi_tech banner each have separate roles. Replacing an image preserves its existing filename so the website continues to reference it.</p></div>
+            </div>
+          </div>
+          <div id="previewPanel" class="panel hidden">
+            <div class="panel-heading"><div><p class="eyebrow">DRAFT CHECK</p><h2>Preview your work</h2><p class="muted">Preview the currently edited page with your unsaved CSS changes.</p></div><button id="refreshPreview" class="secondary">Refresh preview ↻</button></div>
+            <div class="preview-tools"><label for="previewPage">Page to preview</label><select id="previewPage"><option value="index.html">Home</option><option value="about.html">About</option><option value="projects.html">Projects</option><option value="interests.html">Interests</option><option value="journey.html">Journey</option><option value="contact.html">Contact</option></select></div>
+            <iframe id="previewFrame" title="Website draft preview" sandbox="allow-scripts" referrerpolicy="no-referrer"></iframe>
+            <p class="muted preview-note">The preview uses the current editor draft and existing public image assets. Publishing is required for the live website to update.</p>
+          </div>
+        </section>
+      </div>
+      <footer class="app-footer"><span>NSR CONTROL CENTER</span><span>Built for the owner · Keep your access credentials private</span></footer>
+    </section>
+  </main>
+  <script src="/assets/admin.js" defer></script>
+</body>
+</html>
