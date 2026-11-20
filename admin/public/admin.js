@@ -171,6 +171,94 @@ async function refreshPreview() {
 $("refreshPreview").addEventListener("click", refreshPreview);
 $("previewPage").addEventListener("change", refreshPreview);
 
+
+const AUTH_STORAGE_KEY = "nsr_web_totp_seed_v1";
+const BASE32_ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ234567";
+function base32Encode(bytes) {
+  let bits = "";
+  for (const byte of bytes) bits += byte.toString(2).padStart(8, "0");
+  let output = "";
+  for (let i = 0; i < bits.length; i += 5) {
+    const chunk = bits.slice(i, i + 5).padEnd(5, "0");
+    output += BASE32_ALPHABET[parseInt(chunk, 2)];
+  }
+  return output;
+}
+function base32ToBytes(value) {
+  let bits = "";
+  for (const char of value) {
+    const n = BASE32_ALPHABET.indexOf(char);
+    if (n < 0) throw new Error("Saved authenticator secret is invalid.");
+    bits += n.toString(2).padStart(5, "0");
+  }
+  const bytes = [];
+  for (let i = 0; i + 8 <= bits.length; i += 8) bytes.push(parseInt(bits.slice(i, i + 8), 2));
+  return new Uint8Array(bytes);
+}
+async function makeTotp(secret) {
+  const counter = Math.floor(Date.now() / 30000);
+  const message = new Uint8Array(8);
+  let value = BigInt(counter);
+  for (let i = 7; i >= 0; i--) { message[i] = Number(value & 255n); value >>= 8n; }
+  const key = await crypto.subtle.importKey("raw", base32ToBytes(secret), { name: "HMAC", hash: "SHA-1" }, false, ["sign"]);
+  const digest = new Uint8Array(await crypto.subtle.sign("HMAC", key, message));
+  const offset = digest[digest.length - 1] & 15;
+  const binary = ((digest[offset] & 127) << 24) | ((digest[offset + 1] & 255) << 16) | ((digest[offset + 2] & 255) << 8) | (digest[offset + 3] & 255);
+  return String(binary % 1000000).padStart(6, "0");
+}
+async function refreshWebAuthenticator() {
+  const secret = localStorage.getItem(AUTH_STORAGE_KEY);
+  if (!secret || $("authDetails").classList.contains("hidden")) return;
+  try {
+    $("authCode").textContent = await makeTotp(secret);
+    const remaining = 30 - (Math.floor(Date.now() / 1000) % 30);
+    $("authCountdown").textContent = "New code in " + remaining + " seconds";
+  } catch (error) {
+    $("authStatus").textContent = error.message;
+  }
+}
+$("authToggle").addEventListener("click", () => {
+  const panel = $("authPanel");
+  const open = panel.classList.toggle("hidden") === false;
+  $("authToggle").setAttribute("aria-expanded", String(open));
+  $("authToggle").querySelector("span").textContent = open ? "−" : "＋";
+  if (open && localStorage.getItem(AUTH_STORAGE_KEY)) {
+    $("authSecret").value = localStorage.getItem(AUTH_STORAGE_KEY);
+    $("authDetails").classList.remove("hidden");
+    $("authGenerate").classList.add("hidden");
+    refreshWebAuthenticator();
+  }
+});
+$("authGenerate").addEventListener("click", async () => {
+  if (localStorage.getItem(AUTH_STORAGE_KEY)) {
+    $("authStatus").textContent = "A secret is already saved in this browser. Use the existing one; don't generate another unless you intend to replace ADMIN_TOTP_SECRET in Render too.";
+    return;
+  }
+  try {
+    const random = crypto.getRandomValues(new Uint8Array(20));
+    const secret = base32Encode(random);
+    localStorage.setItem(AUTH_STORAGE_KEY, secret);
+    $("authSecret").value = secret;
+    $("authDetails").classList.remove("hidden");
+    $("authGenerate").classList.add("hidden");
+    $("authStatus").textContent = "Secret created and saved in this browser. Now add the exact same secret to Render.";
+    await refreshWebAuthenticator();
+  } catch (error) {
+    $("authStatus").textContent = "Could not create the authenticator secret. Open this page in a modern browser over HTTPS.";
+  }
+});
+$("authCopy").addEventListener("click", async () => {
+  try {
+    await navigator.clipboard.writeText($("authSecret").value);
+    $("authStatus").textContent = "Secret copied. Paste it only into Render's ADMIN_TOTP_SECRET value.";
+  } catch {
+    $("authSecret").focus();
+    $("authSecret").select();
+    $("authStatus").textContent = "Select and copy the secret, then paste it only into Render.";
+  }
+});
+setInterval(refreshWebAuthenticator, 1000);
+
 $("loginForm").addEventListener("submit", async event => {
   event.preventDefault();
   $("loginError").textContent = "";
