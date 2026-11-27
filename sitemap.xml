@@ -1,16 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://nasif-spica-rollins-ug.github.io/</loc>
-    <image:image><image:loc>https://nasif-spica-rollins-ug.github.io/spi_tech_logo.png</image:loc><image:caption>Spi_tech circular technology assistant logo</image:caption><image:title>Spi_tech logo</image:title></image:image>
   </url>
   <url>
     <loc>https://nasif-spica-rollins-ug.github.io/about.html</loc>
   </url>
   <url>
     <loc>https://nasif-spica-rollins-ug.github.io/projects.html</loc>
-    <image:image><image:loc>https://nasif-spica-rollins-ug.github.io/spi_tech_logo.png</image:loc><image:caption>Spi_tech WhatsApp assistant logo</image:caption><image:title>Spi_tech WhatsApp assistant</image:title></image:image>
   </url>
   <url><loc>https://nasif-spica-rollins-ug.github.io/interests.html</loc></url>
   <url><loc>https://nasif-spica-rollins-ug.github.io/journey.html</loc></url>
