@@ -19,7 +19,7 @@ const editableFiles = new Set([
   "journey.html", "contact.html", "styles.css", "script.js",
   "sitemap.xml", "robots.txt", "README.md"
 ]);
-const knownImages = new Set();
+const knownImages = new Set(["nsr-website-logo.jpg"]);
 const sessions = new Map();
 const loginAttempts = new Map();
 
