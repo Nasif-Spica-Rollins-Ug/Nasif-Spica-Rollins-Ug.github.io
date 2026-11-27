@@ -17,11 +17,9 @@ const MAX_BODY = 6 * 1024 * 1024;
 const editableFiles = new Set([
   "index.html", "about.html", "projects.html", "interests.html",
   "journey.html", "contact.html", "styles.css", "script.js",
-  "sitemap.xml", "robots.txt", "favicon.svg", "README.md"
+  "sitemap.xml", "robots.txt", "README.md"
 ]);
-const knownImages = new Set([
-  "spi_tech_logo.png"
-]);
+const knownImages = new Set();
 const sessions = new Map();
 const loginAttempts = new Map();
 
