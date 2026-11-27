@@ -20,9 +20,6 @@ const editableFiles = new Set([
   "sitemap.xml", "robots.txt", "favicon.svg", "README.md"
 ]);
 const knownImages = new Set([
-  "Project_background.jpg",
-  "webpagelogo.png",
-  "main_webpage_background.png",
   "spi_tech_logo.png"
 ]);
 const sessions = new Map();
